@@ -8,17 +8,17 @@ class Hand(object):
     def totalHandValue(self):
         sum = 0
         for cards in self.card:
-            if cards == 'J' or cards == 'K' or cards == 'Q':
+            if cards[0] == 'J' or cards[0] == 'K' or cards[0] == 'Q':
                 sum += 10
             
-            elif cards == 'A':
+            elif cards[0] == 'A':
                 if sum > 10:
                     sum += 1
                 else:
                     sum += 11
 
             else:
-                sum += int(cards) 
+                sum += int(cards[0]) 
 
         return sum
     

@@ -1,5 +1,4 @@
 from hand import Hand
-from game import Game
 
 class Player(object):
     def __init__(self,balance,playerName,playerHand):
@@ -8,7 +7,8 @@ class Player(object):
         self.playerHand = playerHand
 
     def player(self):
-        print(f'O jogador {self.playerName} tem em suas mãos as cartas {self.playerHand} e possui {self.balance} reais.')
+        print(f'Jogador: {self.playerName} Cartas: {self.playerHand} Balance: {self.balance}')
+        print()
 
     def setPlayerName(self,name):
         self.playerName = name
@@ -16,11 +16,15 @@ class Player(object):
     def getPlayerName(self):
         return self.playerName
 
+    def setPlayerHand(self,pHand):
+        self.playerHand = pHand
+
     def wager(self,money):
         self.bet = money
+        return self.bet
 
     def updateBalance(self,earnedmoney):
-        self.balance = self.balance - self.wager + earnedmoney
+        self.balance += -self.bet + earnedmoney 
 
     def getBalance(self):
         return self.balance

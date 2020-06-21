@@ -1,4 +1,9 @@
 import random
+from player import Player
+from hand import Hand
+from card import Card
+from dealer import Dealer
+
 class Game(object):
 
     def __init__(self):
@@ -9,4 +14,56 @@ class Game(object):
     def shuffleDeck(self):
         random.shuffle(self.deck)
 
-    
+    def playRound(self):
+        dealerhand = Hand([self.deck.pop(-1),self.deck.pop(-1)])
+        playerhand = Hand([self.deck.pop(-1),self.deck.pop(-1)])
+
+        Game.shuffleDeck(self)
+        print("Welcome to BlackJack Game, let's play!")
+        game_on = True
+        dealer1 = Dealer('Dealer',dealerhand.card)
+        player = Player(200,'Gabriel',playerhand.card)
+        dealer1.dealer()
+        player.player()
+        bet = player.wager(int(input("Choose your bet: ")))
+        
+        player.updateBalance(0)
+        dealer1.dealer()
+        player.player()
+
+        if playerhand.totalHandValue() == 21:
+            print("BlackJack! You win!")
+            game_on = False
+        
+        elif dealerhand.totalHandValue() == 21:
+            print("Dealer got a BlackJack! You lose :(")
+            game_on = False
+
+        while game_on:
+            if player.playerHand[0][0] == player.playerHand[1][0]:
+                choice = input('Hit[H], Stand[S], Split[SS] or Double[D]: ')
+            
+            else:
+                choice = input('Hit[H], Stand[S] or Double[D]: ')
+
+            if choice == 'H':
+                playerhand.addCard(self.deck.pop(-1))
+            
+            elif choice == 'SS':
+                player.setPlayerHand([[playerhand.card[0]],[playerhand.card[1]]])
+
+            elif choice == 'D':
+                player.wager(bet)
+                player.updateBalance()
+                playerhand.addCard(self.deck.pop(-1))
+
+            dealer1.dealer()
+            player.player()
+
+            if playerhand.bust:
+                print("You busted!")
+                break
+
+            if dealerhand.bust:
+                print("Dealer busted! You win")
+                break

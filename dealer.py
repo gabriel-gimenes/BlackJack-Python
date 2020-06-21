@@ -1,5 +1,4 @@
 from hand import Hand
-from game import Game
 
 class Dealer(object):
     def __init__(self,dealerName,dealerHand):
@@ -13,4 +12,5 @@ class Dealer(object):
         return self.dealerName
 
     def dealer(self):
-        print(f'O {self.dealerName} tem em suas mãos as cartas {self.dealerHand}.')
+        print()
+        print(f'Dealer: {self.dealerName} Cartas: {self.dealerHand}')
