@@ -13,4 +13,4 @@ class Dealer(object):
 
     def dealer(self):
         print()
-        print(f'Dealer: {self.dealerName} Cartas: {self.dealerHand}')
+        print(f'Dealer: {self.dealerName} Cartas: {self.dealerHand}') 

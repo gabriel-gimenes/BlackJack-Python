@@ -8,7 +8,6 @@ class Player(object):
 
     def player(self):
         print(f'Jogador: {self.playerName} Cartas: {self.playerHand} Balance: {self.balance}')
-        print()
 
     def setPlayerName(self,name):
         self.playerName = name
