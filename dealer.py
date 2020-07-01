@@ -1,8 +1,5 @@
-from hand import Hand
-
-class Dealer(object):
-    def __init__(self,dealerName,dealerHand):
-        self.dealerName = dealerName
+class Dealer():
+    def __init__(self,dealerHand):
         self.dealerHand = dealerHand
 
     def setDealerName(self,name):
@@ -11,6 +8,5 @@ class Dealer(object):
     def getDealerName(self):
         return self.dealerName
 
-    def dealer(self):
-        print()
-        print(f'Dealer: {self.dealerName} Cartas: {self.dealerHand}') 
+    def __str__(self):
+        return f'\nDealer: {self.dealerHand}' 
